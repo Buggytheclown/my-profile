@@ -9,6 +9,11 @@ https://github.com/Microsoft/TypeScript/issues/10717
 - DeepReadonly<T> type
 https://github.com/microsoft/TypeScript/issues/13923
 
+Bonus: 
+- Readonly is assignable to mutable
+https://github.com/Microsoft/TypeScript/issues/13347
+https://github.com/microsoft/TypeScript/pull/6532#issuecomment-174356151
+
 Suggestions:
 - Don’t mutate data (ReadOnlyArray, ReadOnly, DeepReadOnly)
 	https://stackoverflow.com/a/55930310/5801495
@@ -35,11 +40,11 @@ Proposal:
 https://github.com/microsoft/TypeScript/issues/7770#issuecomment-334919251
 
 Suggestions:
-- don’t mutate data
+- Don’t mutate data
 
 ###  <a href="./unsafe-operations">Unsafe operations/index access</a>
 Proposal:
-- option to include undefined in index signatures
+- Option to include undefined in index signatures
 https://github.com/microsoft/TypeScript/issues/13778
 
 Suggestions:
