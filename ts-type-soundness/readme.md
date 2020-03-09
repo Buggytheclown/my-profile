@@ -1,6 +1,6 @@
 ### TS unsound behavior
 
-### Type variance, exact types (./type-variance)
+### <a href="./type-variance">Type variance, exact types</a>
 Proposals:
 - Exact types 
 https://github.com/microsoft/TypeScript/issues/12936
@@ -13,7 +13,7 @@ Suggestions:
 - Don’t mutate data (ReadOnlyArray, ReadOnly, DeepReadOnly)
 	https://stackoverflow.com/a/55930310/5801495
 
-### Nominal types, custom types  (./nominal-types)
+### <a href="./nominal-types">Nominal types, custom types</a>
 Proposal:
 - Support some non-structural (nominal) type matching 
 https://github.com/microsoft/TypeScript/issues/202
@@ -21,7 +21,7 @@ https://github.com/microsoft/TypeScript/issues/202
 Suggestions:
 - Opaque type for primitives, private fields for classes
 
-### Exceptions (./exceptions)
+### <a href="./exceptions">Exceptions</a>
 Proposal:
 - Checked exceptions:
 		https://github.com/microsoft/TypeScript/issues/13219
@@ -29,7 +29,7 @@ Proposal:
 Suggestions:
 - Either monad
     
-### Refinement invalidation (./refinement-invalidation)
+### <a href="./refinement-invalidation">Refinement invalidation</a>
 Proposal:
 - Pure modifier: 
 https://github.com/microsoft/TypeScript/issues/7770#issuecomment-334919251
@@ -37,7 +37,7 @@ https://github.com/microsoft/TypeScript/issues/7770#issuecomment-334919251
 Suggestions:
 - don’t mutate data
 
-### Unsafe operations/index access (./unsafe-operations)
+###  <a href="./unsafe-operations">Unsafe operations/index access</a>
 Proposal:
 - option to include undefined in index signatures
 https://github.com/microsoft/TypeScript/issues/13778
@@ -46,7 +46,7 @@ Suggestions:
 - Option type https://en.wikipedia.org/wiki/Option_type
 
 
-### Bonus-cases (./bonus-cases)
+### <a href="./bonus-cases">Bonus-cases</a>
 - Type Guard
 - Overloading
 
