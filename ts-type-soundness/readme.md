@@ -1,5 +1,9 @@
 ### TS unsound behavior
 
+Presentation - https://slides.com/buggy/deck-26cbbd 
+
+Slides - ./slides-deck-*.html
+
 ### <a href="./type-variance">Type variance, exact types</a>
 Proposals:
 - Exact types 
@@ -116,7 +120,7 @@ https://en.wikipedia.org/wiki/Type_theory
 - Curry–Howard correspondence
 https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence
 
-Hindley–Milner type system
+- Hindley–Milner type system
 https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system
 
 - Lambda cube
