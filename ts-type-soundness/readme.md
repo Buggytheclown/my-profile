@@ -4,6 +4,8 @@ Presentation - https://slides.com/buggy/deck-26cbbd
 
 Slides - ./slides-deck-*.html
 
+<a href="./homework/homework-solution.js">'homework' solution</a>
+
 ### <a href="./type-variance">Type variance, exact types</a>
 Proposals:
 - Exact types 
@@ -80,6 +82,9 @@ https://www.youtube.com/watch?v=S0cCjbWuvzk
 
 
 #### Article
+- Strict mode in TypeScript: описание флагов, примеры 
+https://habr.com/ru/post/490970/
+
 - Common "Bugs" That Aren't Bugs
 https://github.com/microsoft/TypeScript/wiki/FAQ#why-do-my-derived-class-property-initializers-overwrite-values-set-in-the-base-class-constructor
 
