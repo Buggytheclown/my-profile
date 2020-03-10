@@ -20,7 +20,7 @@
 </style>
 
 		<meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="URJqmspDa8q2+Une6n5I5+GLcnybS1JN/1e+GjpxH971wPsDDxwyZ3pvQ32xvl+2hKp3ABY+O95lK0vAokVFKg==" />
+<meta name="csrf-token" content="vuy1yljlma9QRa/BOFDLS8T+KgMctrjVM2ncJax5MzkaPiRTnbrAApzTpWJjkNwaod8vf5HD0UapFSn/NE1pzQ==" />
 		<style id="user-css-output" type="text/css"></style>
 	</head>
 	<body>
@@ -63,8 +63,8 @@ NaN + 2     // NaN
 <p style="text-align:left">TS unsound behavior:</p>
 
 <ul>
+	<li style="color:rgb(17, 17, 17); text-align:left">Nominal types, custom types</li>
 	<li style="text-align:left">Type variance, exact types</li>
-	<li style="text-align:left">Nominal types, custom types</li>
 	<li style="text-align:left">Refinement invalidation</li>
 	<li style="text-align:left">Exceptions</li>
 	<li style="text-align:left">Unsafe operations</li>
@@ -161,13 +161,10 @@ Homework: Can types prove correctness?</p>
 </div></div></section><section data-id="95aabdde4a713fef5b0ce41d73371671"><div class="sl-block" data-block-type="image" data-name="image-a12d29" style="width: 606.423px; height: 490px; left: 160px; top: 140px; min-width: 1px; min-height: 1px;" data-block-id="0f945bf5f659e7107ed8377cd8bf0898"><p style="z-index: 10;" class="sl-block-content"><img style="" data-natural-width="474" data-natural-height="383" data-lazy-loaded="" data-src="https://i.pinimg.com/474x/78/fe/d7/78fed7d28f04b7109692090ba9c4259a.jpg"></p></div>
 <div class="sl-block" data-block-type="text" data-name="text-7b3574" data-block-id="a33e70f27ce1a9170c4109a082ee2fe2" style="height: auto; width: 600px; left: 180px; top: 31px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
 <p>Look the same but different</p>
+
+<p><span style="font-size:0.7em">Structural vs Nominal typing</span></p>
 </div></div></section><section data-id="f191f7359a67b8900b0702886eaf026d"><div class="sl-block" data-block-type="text" data-name="text-50ad5e" data-block-id="353b2683873f8476f3c1e23e8918bbfb" style="height: auto; width: 600px; left: 150px; top: 19.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
 <p>Nominal types: problem</p>
-
-<pre style="color:rgb(169, 183, 198); font-size:10.5pt"><span style="color:rgb(128, 128, 128)">string -&gt; ValidatedEmail -&gt; sendEmail(e: ValidatedEmail) </span>
-</pre>
-
-<pre style="color:rgb(169, 183, 198); font-size:10.5pt"><span style="color:rgb(128, 128, 128)">string -&gt; sendEmail(e: ValidatedEmail) </span></pre>
 </div></div>
 <div class="sl-block" data-block-type="code" data-name="code-62e1b5" data-block-id="c6fd3c3c9f06d5a509669d5ea3a22fbf" style="width: 807px; height: auto; left: 80px; top: 140px;"><div class="sl-block-content notranslate" data-highlight-theme="xcode" data-code-frame="none" style="z-index: 11; font-size: 125%;" data-code-autoheight="true"><pre class="typescript"><code data-line-numbers="4|2|1|5|7-8">type ValidatedEmail = string;
 declare function validateEmail(email: string): ValidatedEmail;
@@ -214,11 +211,6 @@ type Readonly&lt;T&gt; = {
     readonly [P in keyof T]: T[P];
 }</code></pre></div></div></section><section data-id="847dc7e790cc40f7726f916d472d78d0"><div class="sl-block" data-block-type="text" data-name="text-bf126b" data-block-id="4136ed762fb95cc66eb35b111cf15c99" style="height: auto; width: 600px; left: 186px; top: 29px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
 <p>Nominal types: workaround</p>
-
-<pre style="color:rgb(169, 183, 198); font-size:10.5pt"><span style="color:rgb(128, 128, 128)">string -&gt; ValidatedEmail -&gt; sendEmail(e: ValidatedEmail) </span>
-</pre>
-
-<pre style="color:rgb(169, 183, 198); font-size:10.5pt"><span style="color:rgb(128, 128, 128)">string -!-&gt; sendEmail(e: ValidatedEmail) </span></pre>
 </div></div>
 <div class="sl-block" data-block-type="code" data-name="code-331e51" data-block-id="2c3fcc568b6778154f79b879ce496660" style="width: 821px; height: auto; left: 79px; top: 140px;"><div class="sl-block-content notranslate" data-highlight-theme="xcode" data-code-frame="none" style="z-index: 11; font-size: 125%;" data-code-autoheight="true"><pre class="typescript"><code data-line-numbers="1-2|4-5|6|12-15">type Opaque&lt;K extends symbol | string, T&gt; 
 	= T &amp; { [X in K]: never };
@@ -236,9 +228,6 @@ sendEmail(validateEmail('asdf@gmail.com'));
 //  to parameter of type 'Opaque&lt;unique symbol, string&gt;'.
 sendEmail('asdf@gmail.com');</code></pre></div></div></section><section data-id="f28f9be115ce7e0392a3fb9a918ed2aa"><div class="sl-block" data-block-type="text" data-name="text-fa93a5" data-block-id="e913d967d07c75423bb32bd9ce54a625" style="height: auto; width: 600px; left: 180px; top: 31px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
 <p><span>Nominal types 2: problem</span></p>
-
-<pre style="color:rgb(169, 183, 198); font-size:10.5pt; text-align:center"><span style="color:rgb(128, 128, 128)">Euro -&gt; add(d: Dollar)</span>
-</pre>
 </div></div>
 <div class="sl-block" data-block-type="code" data-name="code-26077d" data-block-id="dc08b2c3fda08514ed9ec5ac0aa7c6e2" style="width: 800px; height: auto; left: 80px; top: 140px;"><div class="sl-block-content notranslate" data-highlight-theme="xcode" data-code-frame="none" style="z-index: 11;" data-code-autoheight="true"><pre class="typescript"><code data-line-numbers="1-6|8-13|18-20|22-23">class Dollar {
   value: number;
@@ -290,10 +279,7 @@ euro100.add(euro100);
 dollars100.add(euro100);</code></pre></div></div>
 <div class="sl-block" data-block-type="text" data-name="text-c14166" data-block-id="07f9fe3a4ee8d26103b179810bdb7659" style="height: auto; width: 600px; left: 180px; top: 60px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
 <p><span style="font-size:0.5em"><a href="https://github.com/microsoft/TypeScript/issues/202" target="_blank">https://github.com/microsoft/TypeScript/issues/202</a></span></p>
-</div></div></section><section data-id="c5a94e0b58c39fed92662e27d62559b1"><div class="sl-block" data-block-type="code" data-name="code-042d84" data-block-id="f512208fe598e54faf6358a4d452785c" style="width: 720px; height: auto; left: 80px; top: 140px;"><div class="sl-block-style" style="z-index: 10; transform: rotate(0deg);"><div class="sl-block-content notranslate" data-highlight-theme="xcode" data-code-frame="none" style="z-index: 10; font-size: 125%;" data-code-autoheight="true"><pre class="javascript"><code data-line-numbers="1-2,5-6,11|7|8">// --strictNullChecks
-// --strictPropertyInitialization
-
-class A {
+</div></div></section><section data-id="c5a94e0b58c39fed92662e27d62559b1"><div class="sl-block" data-block-type="code" data-name="code-042d84" data-block-id="f512208fe598e54faf6358a4d452785c" style="width: 720px; height: auto; left: 80px; top: 140px;"><div class="sl-block-style" style="z-index: 10; transform: rotate(0deg);"><div class="sl-block-content notranslate" data-highlight-theme="xcode" data-code-frame="none" style="z-index: 10; font-size: 125%;" data-code-autoheight="true"><pre class="javascript"><code data-line-numbers="2-3,8|4|5">class A {
   // definite assignment assertion
   imNumber!: number;
   #imNativePrivate = 1;
@@ -305,8 +291,6 @@ let age: number = null!;</code></pre></div></div></div>
 <p>Info time</p>
 </div></div></section><section data-id="03069444cced6e36c350118b4b8f32e1"><div class="sl-block" data-block-type="text" data-name="text-d35022" data-block-id="818f32836a413f0f6a0c3febd51eec32" style="height: auto; width: 600px; left: 180px; top: 31px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
 <p>Nominal types 2: workaround</p>
-
-<pre style="color:rgb(169, 183, 198); font-size:10.5pt; text-align:center"><span style="color:rgb(128, 128, 128)">Euro -!-&gt; add(d: Dollar)</span></pre>
 </div></div>
 <div class="sl-block" data-block-type="code" data-name="code-474c44" data-block-id="03454156d10e6f93e8d6d7188a5718d7" style="width: 842px; height: auto; left: 80px; top: 140px;"><div class="sl-block-content notranslate" data-highlight-theme="xcode" data-code-frame="none" style="z-index: 11;" data-code-autoheight="true"><pre class="typescript"><code data-line-numbers="2,11,22-25|3,12,22-25">class Dollar {
   #desc!: never;
@@ -335,10 +319,10 @@ const euro100 = new Euro(100);
 dollars100.add(euro100);</code></pre></div></div></section><section data-id="3f25cdde0b22eb5d69371da3efa6a748"><div class="sl-block" data-block-type="image" data-name="image-e59e21" data-block-id="32d7ea66a3ceea7d6b5f8da9c2650b50" style="width: 640px; height: 480px; left: 160px; top: 140px; min-width: 1px; min-height: 1px;"><p style="z-index: 10;" class="sl-block-content"><img data-natural-width="320" data-natural-height="240" style="" data-lazy-loaded="" data-src="https://integritymc.com/wp-content/uploads/2013/02/square-peg-in-round-hole.jpg"></p></div>
 <div class="sl-block" data-block-type="text" data-name="text-e52291" data-block-id="f55d46ade9f76efde6f8f0c441a9a385" style="height: auto; width: 600px; left: 180px; top: 31px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
 <p>One size does not fit all</p>
+
+<p><span style="font-size:0.7em">SuperType &lt;-&gt; Type &lt;-&gt; SubType</span></p>
 </div></div></section><section data-id="83861eee698fa1eef5d6408269407200"><div class="sl-block" data-block-type="text" data-name="text-f9544b" data-block-id="a8fa2076402258650cf51943f5507814" style="height: auto; width: 600px; left: 180px; top: 38.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
 <p><span>Type variance: problem</span></p>
-
-<pre style="color:#a9b7c6; font-size:10.5pt"><span style="color:#808080">{ status: number } -&gt; { status: number | string } -&gt; { status: string }</span></pre>
 </div></div>
 <div class="sl-block" data-block-type="code" data-name="code-fa418f" data-block-id="994ca77d3237b567771a477ca798bebe" style="width: 800px; height: auto; left: 80px; top: 140px;"><div class="sl-block-content notranslate" data-highlight-theme="xcode" data-code-frame="none" style="z-index: 11; font-size: 125%;" data-code-autoheight="true"><pre class="javascript"><code data-line-numbers="5|1|2|8-9">function changeStatus(arg: { status: number | string }) {
   arg.status = "NotFound";
@@ -351,20 +335,22 @@ changeStatus(error);
 console.log(error.status.toFixed());</code></pre></div></div></section><section data-id="a3a983bcd100ddb5b40252230f49e028"><div class="sl-block" data-block-type="text" data-name="text-9247d0" data-block-id="0d88f1509a7aedad4df25a24b6251775" style="height: auto; width: 800px; left: 80px; top: 27px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
 <p>Type variance: proposals</p>
 </div></div>
-<div class="sl-block" data-block-type="code" data-name="code-bf3ef6" data-block-id="e9097c8b0671e32b5e9f8d7618cd3e7e" style="width: 794px; height: auto; left: 80px; top: 140px;"><div class="sl-block-content notranslate" data-highlight-theme="xcode" data-code-frame="none" style="z-index: 11; font-size: 125%;" data-code-autoheight="true"><pre class="javascript"><code data-line-numbers="2-3|">function changeStatus&lt;
-  in T extends {
+<div class="sl-block" data-block-type="code" data-name="code-bf3ef6" data-block-id="e9097c8b0671e32b5e9f8d7618cd3e7e" style="width: 794px; height: auto; left: 80px; top: 140px;"><div class="sl-block-content notranslate" data-highlight-theme="xcode" data-code-frame="none" style="z-index: 11; font-size: 125%;" data-code-autoheight="true"><pre class="javascript"><code data-line-numbers="2-3,10-11|">function changeStatus&lt;
+  out T extends {
     status: number | string;
   }
 &gt;(arg: T) {
-  // Error
   arg.status = "NotFound";
 }
 
 const error: { status: number } = { status: 404 };
+// Error!
 changeStatus(error);
 
 console.log(error.status.toFixed());</code></pre></div></div>
-<div class="sl-block" data-block-type="text" data-name="text-3756b6" data-block-id="0cfb8dc046d39af9a7e846816a331d10" style="height: auto; width: 600px; left: 180px; top: 70px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<div class="sl-block" data-block-type="text" data-name="text-3756b6" data-block-id="0cfb8dc046d39af9a7e846816a331d10" style="height: auto; width: 600px; left: 177px; top: 70px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; line-height: 0.65;" data-has-line-height="">
+<p><span style="font-size:0.7em"><span style="color:rgb(17, 17, 17)">Mutability should affect structure hierarchy</span></span></p>
+
 <p><span style="font-size:0.5em"><a href="https://github.com/Microsoft/TypeScript/issues/10717" target="_blank"><span style="color:rgb(17, 85, 204)">https://github.com/Microsoft/TypeScript/issues/10717</span></a></span></p>
 </div></div></section><section data-id="f623cc7eee93d59c52229982685684b4"><div class="sl-block" data-block-type="text" data-name="text-ba3f67" data-block-id="c1aac784450261d74bd7d91d400d8d45" style="height: auto; width: 827px; left: 80px; top: 24.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
 <p>Info time </p>
@@ -406,8 +392,6 @@ interface ReadonlySetDeep&lt;ItemType&gt;
 <p><a href="https://stackoverflow.com/a/55930310/5801495" style="font-size: 0.5em;" target="_blank"><span style="color:rgb(17, 85, 204)">https://stackoverflow.com/a/55930310/5801495</span></a></p>
 </div></div></section><section data-id="11f01b8dec25dad1e5163f9f7fee8048"><div class="sl-block" data-block-type="text" data-name="text-1bf72f" data-block-id="db27cec2125c40025654fe790d29a104" style="height: auto; width: 718px; left: 162px; top: 29.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
 <p>Type variance: suggestion</p>
-
-<pre style="color:rgb(169, 183, 198); font-size:10.5pt; text-align:center"><span style="color:rgb(128, 128, 128)">DR&lt;{ status: number }&gt; -&gt; DR&lt;{ status: number | string }&gt; !!! { status: string }</span></pre>
 </div></div>
 <div class="sl-block" data-block-type="code" data-name="code-f7d094" data-block-id="de4cf76785c9e1826b700c0a8b4f3c5d" style="width: 800px; height: auto; left: 80px; top: 140px;"><div class="sl-block-content notranslate" data-highlight-theme="xcode" data-code-frame="none" style="z-index: 11; font-size: 125%;" data-code-autoheight="true"><pre class="javascript"><code data-line-numbers="1,6">function changeStatus(arg: DR&lt;{ status: number | string }&gt;) {
   // Error: Cannot assign, status is not writable
@@ -435,10 +419,7 @@ console.log(error.status.toFixed());</code></pre></div></div></div>
 
 <p><span style="font-size:0.5em"><a href="https://github.com/microsoft/TypeScript/pull/6532#issuecomment-174356151" target="_blank">https://github.com/microsoft/TypeScript/pull/6532#issuecomment-174356151</a></span></p>
 </div></div></section><section data-id="024a611ee0fc4d7a3dfd4c8458374c0a"><div class="sl-block" data-block-type="text" data-name="text-45dcee" data-block-id="a4121a99605a0b43c141d9ca3bfc9a35" style="height: auto; width: 669px; left: 145.5px; top: 29px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
-<p>Type variance2: problem</p>
-
-<pre style="color:rgb(169, 183, 198); font-size:10.5pt; text-align:center"><span style="color:rgb(128, 128, 128)">{ status: string } -&gt; {} -&gt; ({ status: number, ...{} }) -&gt; { status: number }</span>
-</pre>
+<p>Type variance2: problem </p>
 </div></div>
 <div class="sl-block" data-block-type="code" data-name="code-62822b" data-block-id="2708bec6db6e6e3e246d952dd4c71391" style="width: 800px; height: auto; left: 80px; top: 140px;"><div class="sl-block-content notranslate" data-highlight-theme="xcode" data-code-frame="none" style="z-index: 11; font-size: 125%;" data-code-autoheight="true"><pre class="javascript"><code data-line-numbers="1|6|7-9|6,8,11-12|3,14-15|17-18">const error: { message: string; status: string } = {
   message: "No data",
@@ -476,11 +457,11 @@ function updateError(arg: Exact&lt;{ message: string }&gt;) {
 
 updateError(error);</code></pre></div></div>
 <div class="sl-block" data-block-type="text" data-name="text-d788af" data-block-id="2c06ab5573ddb06b73ce907c340bf36b" style="height: auto; width: 600px; left: 180px; top: 70px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; font-size: 50%;">
+<p><span style="font-size:1.4em">Exact - without extra fields</span></p>
+
 <p><a href="https://github.com/microsoft/TypeScript/issues/12936" target="_blank"><span style="color:rgb(17, 85, 204)">https://github.com/microsoft/TypeScript/issues/12936</span></a></p>
 </div></div>
-<div class="sl-block" data-block-type="text" data-name="text-45077f" data-block-id="7e187d7eae43fd7dbe1c1e986ea0036a" style="height: auto; width: 798px; left: 80px; top: 98px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
-<pre style="color:rgb(169, 183, 198); font-size:10.5pt; text-align:center"><span style="color:rgb(128, 128, 128)">Exact&lt;{}&gt; -&gt; Exact&lt;{}&gt; -&gt; ({ status: number, ...{} }) -&gt; { status: number }</span></pre>
-</div></div></section><section data-id="df07324ed2a78682c9b8748e02b102e8"><div class="sl-block" data-block-type="text" data-name="text-be147d" data-block-id="ca1d9f1bef01fd459ff28d3e3c3ebec8" style="height: auto; width: 751px; left: 104.5px; top: 24.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+</section><section data-id="df07324ed2a78682c9b8748e02b102e8"><div class="sl-block" data-block-type="text" data-name="text-be147d" data-block-id="ca1d9f1bef01fd459ff28d3e3c3ebec8" style="height: auto; width: 751px; left: 104.5px; top: 24.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
 <p><span>Type variance2: suggestion</span></p>
 </div></div>
 <div class="sl-block" data-block-type="code" data-name="code-16e49f" data-block-id="0aa14412ec49b15f456fe201f141b0a0" style="width: 809px; height: auto; left: 80px; top: 140px;"><div class="sl-block-content notranslate" data-highlight-theme="xcode" data-code-frame="none" style="z-index: 11; font-size: 125%;" data-code-autoheight="true"><pre class="javascript"><code data-line-numbers="8-9">const error: { message: string; status: string } = {
@@ -496,9 +477,7 @@ function updateError(arg: { message: string }) {
 }
 
 updateError(error);</code></pre></div></div>
-<div class="sl-block" data-block-type="text" data-name="text-05556b" data-block-id="8bc6c87e62ea57e90fd91fd810db3994" style="height: auto; width: 757px; left: 101.5px; top: 70px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
-<pre style="color:rgb(169, 183, 198); font-size:10.5pt; text-align:center"><span style="color:rgb(128, 128, 128)">{ status: string } -&gt; {} -&gt; ({ status: number, ...filter({}) }) -&gt; { status: number }</span></pre>
-</div></div></section><section data-id="52cc5df664fd5165aaac1f4e96de60bd"><div class="sl-block" data-block-type="image" data-name="image-1b5256" data-block-id="231f644ebc730ca96599a93b9974dda7" style="width: 834.844px; height: 469.6px; left: 80px; top: 140px; min-width: 1px; min-height: 1px;"><p style="z-index: 10;" class="sl-block-content"><img data-natural-width="1280" data-natural-height="720" style="" data-lazy-loaded="" data-src="https://stroy-podskazka.ru/images/article/orig/2019/03/kak-sdelat-sejf-iz-kartona-3.jpg"></p></div>
+</section><section data-id="52cc5df664fd5165aaac1f4e96de60bd"><div class="sl-block" data-block-type="image" data-name="image-1b5256" data-block-id="231f644ebc730ca96599a93b9974dda7" style="width: 834.844px; height: 469.6px; left: 80px; top: 140px; min-width: 1px; min-height: 1px;"><p style="z-index: 10;" class="sl-block-content"><img data-natural-width="1280" data-natural-height="720" style="" data-lazy-loaded="" data-src="https://stroy-podskazka.ru/images/article/orig/2019/03/kak-sdelat-sejf-iz-kartona-3.jpg"></p></div>
 <div class="sl-block" data-block-type="text" data-name="text-1e17a4" data-block-id="a285da227230e6d6ec3d5001983513f7" style="height: auto; width: 600px; left: 180px; top: 31px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
 <p>T - trust</p>
 </div></div></section><section data-id="679ce1614d3e0e51c85b80afe5fcdfff"><div class="sl-block" data-block-type="text" data-name="text-d95e1b" data-block-id="3314150bfd8c947d3d0b833d711d6f4b" style="height: auto; width: 600px; left: 180px; top: 31px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
@@ -538,7 +517,9 @@ if (typeof person.age === "number") {
   logAge(person.name, person.age);
   logAge(person.name, person.age);
 }</code></pre></div></div>
-<div class="sl-block" data-block-type="text" data-name="text-180e5a" data-block-id="cb95a205d31ecc725bdce277666dec8d" style="height: auto; width: 600px; left: 180px; top: 70px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<div class="sl-block" data-block-type="text" data-name="text-180e5a" data-block-id="cb95a205d31ecc725bdce277666dec8d" style="height: auto; width: 600px; left: 180px; top: 70px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; line-height: 0.65;" data-has-line-height="">
+<p><span style="font-size:0.7em">Pure - without side effects</span></p>
+
 <p><span style="font-size:0.5em"><a href="https://github.com/microsoft/TypeScript/issues/7770#issuecomment-334919251" target="_blank"><span style="color:rgb(17, 85, 204)">https://github.com/microsoft/TypeScript/issues/7770#issuecomment-334919251</span></a></span></p>
 </div></div></section><section data-id="eab447e85c13c68a70ce32607755fc1b"><div class="sl-block" data-block-type="code" data-name="code-329690" data-block-id="3dc3e965cef71b94948d06d9a050b0a7" style="width: 800px; height: auto; left: 80px; top: 140px;"><div class="sl-block-content notranslate" data-highlight-theme="xcode" data-code-frame="none" style="z-index: 10; font-size: 125%;" data-code-autoheight="true"><pre class="javascript"><code data-line-numbers="10">import { DR } from "../helpers";
 
@@ -561,7 +542,7 @@ if (typeof person.age === "number") {
 </code></pre></div></div>
 <div class="sl-block" data-block-type="text" data-name="text-f2b0cd" data-block-id="45c2a032fe588d185f6c36b5f2952204" style="height: auto; width: 600px; left: 180px; top: 31px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
 <p>Refinement invalidation: suggestions</p>
-</div></div></section><section data-id="45d704a7aace2d21a98b95bbd252536d"><div class="sl-block" data-block-type="image" data-name="image-ba7bee" data-block-id="0220f5661fd3354198f31a1127c5380e" style="width: 504.288px; height: 490px; left: 227.856px; top: 140px;"><div class="sl-block-content" style="z-index: 10;"><img style="" data-natural-width="600" data-natural-height="583" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/1282220/images/7148932/126-1264324_flow-js-logo-svg-clipart.png"></div></div>
+</div></div></section><section data-id="45d704a7aace2d21a98b95bbd252536d"><div class="sl-block" data-block-type="image" data-name="image-ba7bee" data-block-id="0220f5661fd3354198f31a1127c5380e" style="width: 504.288px; height: 490px; left: 227.856px; top: 140px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 10;"><img style="" data-natural-width="600" data-natural-height="583" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/1282220/images/7148932/126-1264324_flow-js-logo-svg-clipart.png"></div></div>
 <div class="sl-block" data-block-type="text" data-name="text-59cf3c" data-block-id="95697f4f09f5966b09d1d88386392295" style="height: auto; width: 600px; left: 180px; top: 31px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
 <p>it's great, but...</p>
 </div></div></section><section data-id="686598bf8585f7068d80fe8838a2276a"><div class="sl-block" data-block-type="image" data-name="image-fc6a05" data-block-id="b442ec40d9fdf62518ed59ca69cda882" style="width: 445.81px; height: 560px; left: 240px; top: 70px; min-width: 1px; min-height: 1px;"><p style="z-index: 10;" class="sl-block-content"><img data-natural-width="570" data-natural-height="716" style="" data-lazy-loaded="" data-src="https://i.etsystatic.com/8198185/r/il/362c74/960641204/il_570xN.960641204_ewbx.jpg"></p></div></section><section data-id="1990fb6833cb5ea4ae7caa891001000f"><div class="sl-block" data-block-type="text" data-name="text-a19ed0" data-block-id="a38e8b7f91f3e5bf5578bd1bef0b08ba" style="height: auto; width: 600px; left: 180px; top: 31px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
@@ -622,7 +603,9 @@ function getJokeSafe(isFunny: boolean): string {
 }
 
 console.log(getJokeSafe(true));</code></pre></div></div>
-<div class="sl-block" data-block-type="text" data-name="text-949a47" data-block-id="98b1ef49a754d3c8a979085481a6e75d" style="height: auto; width: 600px; left: 180px; top: 66px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<div class="sl-block" data-block-type="text" data-name="text-949a47" data-block-id="98b1ef49a754d3c8a979085481a6e75d" style="height: auto; width: 600px; left: 180px; top: 66px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; line-height: 0.65;" data-has-line-height="">
+<p><span style="font-size:0.7em">Checked exceptions</span></p>
+
 <p><span style="font-size:0.5em"><a href="https://github.com/microsoft/TypeScript/issues/13219" target="_blank"><span style="color:rgb(17, 85, 204)">https://github.com/microsoft/TypeScript/issues/13219</span></a></span></p>
 </div></div></section><section data-id="89940414d1091e8a78d46abea360fe73"><div class="sl-block" data-block-type="code" data-name="code-d55d9b" data-block-id="b44cff58fa3263a3a46fa6ee5d8c673f" style="width: 842px; height: auto; left: 80px; top: 140px;"><div class="sl-block-content notranslate" data-highlight-theme="xcode" data-code-frame="none" style="z-index: 10; font-size: 125%;" data-code-autoheight="true"><pre class="javascript"><code data-line-numbers="1|3|10">const promise1: Promise&lt;number&gt; = Promise.resolve(42);
 
@@ -637,10 +620,10 @@ interface PromiseConstructor {
     ) =&gt; void
   ): Promise&lt;T&gt;;
 }</code></pre></div></div>
-<div class="sl-block" data-block-type="text" data-name="text-50cdd5" data-block-id="27f50cc5558f9a534cbc4c979a637057" style="height: auto; width: 600px; left: 180px; top: 27.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<div class="sl-block" data-block-type="text" data-name="text-50cdd5" data-block-id="27f50cc5558f9a534cbc4c979a637057" style="height: auto; width: 600px; left: 180px; top: 37.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; line-height: 0.975;" data-has-line-height="">
 <p>Info time</p>
 
-<p>Promise type is broken</p>
+<p><span style="font-size:0.7em">Promise type is broken</span></p>
 </div></div></section><section data-id="8a77a1675cdf46d22e7363b7c462e446"><div class="sl-block" data-block-type="code" data-name="code-ee430e" data-block-id="53159f1c89d6bb12ae3b97054f4d3ebc" style="width: 849px; height: auto; left: 80px; top: 140px;"><div class="sl-block-content notranslate" data-highlight-theme="xcode" data-code-frame="none" style="z-index: 10; font-size: 125%;" data-code-autoheight="true"><pre class="javascript"><code data-line-numbers="5,7|3|11,16|19-20">import { Either, exhaustiveCheck, JokeError } from "../helpers";
 
 function getJoke(isFunny: boolean): Either&lt;JokeError, string&gt; {
@@ -725,9 +708,11 @@ safeIndex(dynamicNumbers, 100)
 <p>Bonus section</p>
 </div></div>
 <div class="sl-block" data-block-type="text" data-name="text-a4098b" data-block-id="fa7155e084953e3d3afffd7ccfd9d7ee" style="height: auto; width: 600px; left: 180px; top: 210px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
-<p>Without proposals, suggestions )</p>
-</div></div></section><section data-id="20f33f24f23fc58d6d8910298a2b2dc8"><div class="sl-block" data-block-type="text" data-name="text-8c4b27" data-block-id="6cf0b4e5d3ad7a33ba93ffeda22dd790" style="height: auto; width: 600px; left: 180px; top: 31px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<p>Raw info</p>
+</div></div></section><section data-id="20f33f24f23fc58d6d8910298a2b2dc8"><div class="sl-block" data-block-type="text" data-name="text-8c4b27" data-block-id="6cf0b4e5d3ad7a33ba93ffeda22dd790" style="height: auto; width: 600px; left: 180px; top: 31px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; line-height: 0.975;" data-has-line-height="">
 <p>Bonus: function overloading</p>
+
+<p><span style="font-size:0.7em">Suggestions: replace with Generic + conditional types</span></p>
 </div></div>
 <div class="sl-block" data-block-type="code" data-name="code-693c2b" data-block-id="001a4395be5dcce63281418a6cde274c" style="width: 800px; height: auto; left: 80px; top: 140px;"><div class="sl-block-content notranslate" data-highlight-theme="xcode" data-code-frame="none" style="z-index: 11; font-size: 125%;" data-code-autoheight="true"><pre class="javascript"><code data-line-numbers="1-2|3-5|6|9-11">function add(a: string, b: string): string;
 function add(a: number, b: number): number;
@@ -777,8 +762,10 @@ function doSomethings(user: User) {
     console.log(user.permissions.join(","));
   }
 }</code></pre></div></div>
-<div class="sl-block" data-block-type="text" data-name="text-860012" style="height: auto; width: 600px; left: 180px; top: 31px;" data-block-id="fc53bf9459cb7f8ed812da22b77ad9fd"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<div class="sl-block" data-block-type="text" data-name="text-860012" style="height: auto; width: 600px; left: 180px; top: 37px;" data-block-id="fc53bf9459cb7f8ed812da22b77ad9fd"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; line-height: 0.975;" data-has-line-height="">
 <p>Bonus: type guard (2/2)</p>
+
+<p><span style="font-size:0.7em">Suggestions: use tagged union</span></p>
 </div></div></section><section data-id="123ac500b1e4bf56b7ada8993dbefd4d"><div class="sl-block" data-block-type="text" data-name="text-7ba796" data-block-id="7e2bef2d4f54ac97605ce3d6e77a1572" style="height: auto; width: 819.25px; left: 70.375px; top: 144px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
 <p><strong>Suggestions:</strong></p>
 
@@ -792,31 +779,30 @@ function doSomethings(user: User) {
 
 <p style="text-align:left"><span><strong>Unsafe operations</strong><span><strong> (index access):</strong> <span style="text-align:left">Either/Maybe monads</span></span></span></p>
 </div></div></section><section data-id="f7a5a753e2e6d092bc2e905cb2cf34ae"><div class="sl-block" data-block-type="text" data-name="text-d3843c" data-block-id="8cbff837e9f27495830b511d418bb3be" style="height: auto; width: 600px; left: 180px; top: 210px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
-
-
-
-
 <p>Immutable data</p>
+
 <p>pure functions</p>
+
 <p>monads</p>
 </div></div></section><section data-id="e9b7583259d0aab48a194c94765d8c91"><div class="sl-block" data-block-type="image" data-name="image-cda596" style="width: 651.356px; height: 490px; left: 154.322px; top: 140px; min-width: 1px; min-height: 1px;" data-block-id="3c7b9d09ecaea79f610a8de91b8e937d"><p style="z-index: 10;" class="sl-block-content"><img style="" data-natural-width="549" data-natural-height="413" data-lazy-loaded="" data-src="https://cdn-media-1.freecodecamp.org/images/1*OtbWm_2OFtg7suie4zEtqA.png"></p></div>
 <div class="sl-block" data-block-type="text" data-name="text-969d9a" data-block-id="a797c166ab99a208a269b7a45e4e6473" style="height: auto; width: 600px; left: 160px; top: 31px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
 <p>FP won. Proven!</p>
-</div></div></section><section data-id="47e4033f4e004b3230be53935bf2039f"><div class="sl-block" data-block-type="text" data-name="text-553dda" data-block-id="42fdb38f459fb275a20caa063096999d" style="height: auto; width: 800px; left: 80px; top: 140px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+</div></div></section><section data-id="47e4033f4e004b3230be53935bf2039f"><div class="sl-block" data-block-type="text" data-name="text-553dda" data-block-id="42fdb38f459fb275a20caa063096999d" style="height: auto; width: 728px; left: 116px; top: 28px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
 <p>Conclusion</p>
 
 <ul>
 	<li style="text-align:left">TS wants to strike a balance between safety and productivity.</li>
 	<li style="text-align:left"><span><span>Tests can prove that program is correct and safe within test cases</span></span></li>
 	<li style="text-align:left">Types can prove that a program is generally safe</li>
-	<li style="text-align:left">The main goal for software engineers is to create readable extensible software, for mathematicians to prove theorems. We should be both of them!</li>
+	<li style="text-align:left"><span style="color:rgb(58, 58, 58); text-align:left">Mutations are bad, m'kay?</span></li>
 </ul>
 
 <p> </p>
-</div></div></section><section data-id="4b92583353f58df0b04e2f097c0fe39e"><div class="sl-block" data-block-type="text" data-name="text-430c0a" data-block-id="ecf4eb7dfb6977373fbc5604a3dc5f98" style="height: auto; width: 600px; left: 180px; top: 31px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+</div></div>
+<div class="sl-block" data-block-type="image" data-name="image-a2ee8f" data-block-id="96329039488d9aff7d9c2e8e0b136c5a" style="width: 431.7px; height: 287.8px; left: 264.15px; top: 350px;"><div class="sl-block-content" style="z-index: 11;"><img style="" data-natural-width="960" data-natural-height="640" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/1282220/images/7155381/TestingPyramid_en.png"></div></div></section><section data-id="4b92583353f58df0b04e2f097c0fe39e"><div class="sl-block" data-block-type="text" data-name="text-430c0a" data-block-id="ecf4eb7dfb6977373fbc5604a3dc5f98" style="height: auto; width: 600px; left: 180px; top: 31px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
 <p>QA</p>
 </div></div>
-<div class="sl-block" data-block-type="text" data-name="text-24304e" data-block-id="10b1a5bfdb7a0d43e1eae797dcddf52b" style="height: auto; width: 342px; left: 549px; top: 376px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; line-height: 0.91;" data-has-line-height="">
+<div class="sl-block" data-block-type="text" data-name="text-24304e" data-block-id="10b1a5bfdb7a0d43e1eae797dcddf52b" style="height: auto; width: 342px; left: 535px; top: 280px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; line-height: 0.91;" data-has-line-height="">
 <p><span style="font-size:0.7em">Slides, code, useful links:</span></p>
 
 <p><span style="font-size:0.7em"><a href="https://github.com/Buggytheclown/my-profile/tree/master/ts-type-soundness" target="_blank">https://github.com/Buggytheclown/my-profile/tree/master/ts-type-soundness</a></span></p>
@@ -830,13 +816,24 @@ function doSomethings(user: User) {
 <p style="text-align:left"><span style="font-size:0.7em">Email: a.m.ivanov375@gmail.com</span></p>
 </div></div>
 <div class="sl-block" data-block-type="image" style="width: 90.2655px; height: 51px; left: 80px; top: 159px; min-width: 1px; min-height: 1px;" data-name="image-30335a" data-block-id="559d0935950f960bb71f45050c4dec56"><div class="sl-block-content" style="z-index: 13;"><img data-natural-width="200" data-natural-height="113" style="" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/1282220/images/7144167/BUGGY.jpg"></div></div>
-<div class="sl-block" data-block-type="image" data-name="image-d5ccbd" data-block-id="4362dcb0d562e244a38a955961e6c404" style="width: 350px; height: 350px; left: 80px; top: 280px;"><div class="sl-block-content" style="z-index: 14;"><img data-natural-width="300" data-natural-height="300" style="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/1282220/images/7152112/frame__1_.png"></div></div></section>
+<div class="sl-block" data-block-type="image" data-name="image-d5ccbd" data-block-id="4362dcb0d562e244a38a955961e6c404" style="width: 350px; height: 350px; left: 80px; top: 280px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 14;"><img data-natural-width="300" data-natural-height="300" style="" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/1282220/images/7152112/frame__1_.png"></div></div>
+<div class="sl-block" data-block-type="code" data-name="code-4a3f80" data-block-id="43259a5637f935be3bffa167c47681fe" style="width: 452px; height: auto; left: 480px; top: 474px;"><div class="sl-block-content notranslate" data-highlight-theme="xcode" data-code-frame="none" style="z-index: 15; font-size: 90%;" data-code-autoheight="true"><pre class="javascript"><code data-line-numbers="">// https://flow.org/try/
+type Name = { name: string, surname?: string };
+declare function log(arg: Name): void;
+
+const person: { name: string } =
+  { name: 'Negasi' };
+
+log(person);</code></pre></div></div>
+<div class="sl-block" data-block-type="text" data-name="text-e6fe7b" data-block-id="9e39c1fb989292fb6b68c54c98f656f2" style="height: auto; width: 452px; left: 480px; top: 445px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16; font-size: 75%;">
+<p>Homework: fix type error</p>
+</div></div></section>
 			</div>
 		</div>
 
 		
 <script>
-	var SLConfig = {"current_user":{"id":1282220,"username":"buggy","name":"Buggy","description":null,"thumbnail_url":"https://lh3.googleusercontent.com/a-/AOh14GgibyS3XUxE_WHPXdNwyHUQfPVQtbPIORoJDipH","paid":false,"pro":false,"lite":false,"team_id":null,"settings":{"id":4990393,"present_controls":true,"present_upsizing":true,"present_pointer":false,"present_notes":true,"default_deck_tag_id":null,"editor_grid":true,"editor_grid_on_top":false,"editor_snap":true,"editor_fixed_notes":false,"developer_mode":false,"speaker_layout":null,"speaker_theme":null,"phone_number":null,"phone_country_code":null,"media_sources":null,"export_controls":null,"export_slide_number":null,"export_slide_notes":null,"export_separate_fragments":null,"auto_animate_tutorial_completed":true},"email":"buggy.the.clown.md@gmail.com","notify_on_receipt":true,"billing_address":null,"billing_vat_id":null,"editor_tutorial_completed":true,"manually_upgraded":false,"deck_user_editor_limit":null,"storage_used":91874,"storage_limit":262144000},"deck":{"id":1736136,"slug":"deck-26cbbd","title":"Copy of deck","description":"","width":960,"height":700,"margin":0.05,"visibility":"all","published_at":"2020-03-06T08:40:17.844Z","sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/90aa5e556c1836ed7616b56a676511d3/thumb.jpg?1583665874","view_count":2,"user":{"id":1282220,"username":"buggy","name":"Buggy","description":null,"thumbnail_url":"https://lh3.googleusercontent.com/a-/AOh14GgibyS3XUxE_WHPXdNwyHUQfPVQtbPIORoJDipH","paid":false,"pro":false,"lite":false,"team_id":null,"settings":{"id":4990393,"present_controls":true,"present_upsizing":true,"present_pointer":false,"present_notes":true,"default_deck_tag_id":null}},"background_transition":"slide","transition":"slide","theme_id":null,"theme_font":"montserrat","theme_color":"sand-blue","auto_slide_interval":0,"comments_enabled":true,"forking_enabled":true,"rolling_links":false,"center":false,"shuffle":null,"should_loop":false,"share_notes":null,"slide_number":null,"slide_count":53,"rtl":false,"version":2,"collaborative":false,"deck_user_editor_limit":null,"data_updated_at":1583755750001,"font_typekit":null,"font_google":null,"time_limit":null,"upsizing_enabled":null,"notes":{}},"user":{"id":1282220,"username":"buggy","name":"Buggy","description":null,"thumbnail_url":"https://lh3.googleusercontent.com/a-/AOh14GgibyS3XUxE_WHPXdNwyHUQfPVQtbPIORoJDipH","paid":false,"pro":false,"lite":false,"team_id":null,"settings":{"id":4990393,"present_controls":true,"present_upsizing":true,"present_pointer":false,"present_notes":true,"default_deck_tag_id":null}}};
+	var SLConfig = {"current_user":{"id":1282220,"username":"buggy","name":"Buggy","description":null,"thumbnail_url":"https://lh3.googleusercontent.com/a-/AOh14GgibyS3XUxE_WHPXdNwyHUQfPVQtbPIORoJDipH","paid":false,"pro":false,"lite":false,"team_id":null,"settings":{"id":4990393,"present_controls":true,"present_upsizing":true,"present_pointer":false,"present_notes":true,"default_deck_tag_id":null,"editor_grid":true,"editor_grid_on_top":false,"editor_snap":true,"editor_fixed_notes":false,"developer_mode":false,"speaker_layout":null,"speaker_theme":null,"phone_number":null,"phone_country_code":null,"media_sources":null,"export_controls":null,"export_slide_number":null,"export_slide_notes":null,"export_separate_fragments":null,"auto_animate_tutorial_completed":true},"email":"buggy.the.clown.md@gmail.com","notify_on_receipt":true,"billing_address":null,"billing_vat_id":null,"editor_tutorial_completed":true,"manually_upgraded":false,"deck_user_editor_limit":null,"storage_used":111814,"storage_limit":262144000},"deck":{"id":1736136,"slug":"deck-26cbbd","title":"Copy of deck","description":"","width":960,"height":700,"margin":0.05,"visibility":"all","published_at":"2020-03-06T08:40:17.844Z","sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/90aa5e556c1836ed7616b56a676511d3/thumb.jpg?1583665874","view_count":3,"user":{"id":1282220,"username":"buggy","name":"Buggy","description":null,"thumbnail_url":"https://lh3.googleusercontent.com/a-/AOh14GgibyS3XUxE_WHPXdNwyHUQfPVQtbPIORoJDipH","paid":false,"pro":false,"lite":false,"team_id":null,"settings":{"id":4990393,"present_controls":true,"present_upsizing":true,"present_pointer":false,"present_notes":true,"default_deck_tag_id":null}},"background_transition":"slide","transition":"slide","theme_id":null,"theme_font":"montserrat","theme_color":"sand-blue","auto_slide_interval":0,"comments_enabled":true,"forking_enabled":true,"rolling_links":false,"center":false,"shuffle":null,"should_loop":false,"share_notes":null,"slide_number":null,"slide_count":53,"rtl":false,"version":2,"collaborative":false,"deck_user_editor_limit":null,"data_updated_at":1583835138362,"font_typekit":null,"font_google":null,"time_limit":null,"upsizing_enabled":null,"notes":{}},"user":{"id":1282220,"username":"buggy","name":"Buggy","description":null,"thumbnail_url":"https://lh3.googleusercontent.com/a-/AOh14GgibyS3XUxE_WHPXdNwyHUQfPVQtbPIORoJDipH","paid":false,"pro":false,"lite":false,"team_id":null,"settings":{"id":4990393,"present_controls":true,"present_upsizing":true,"present_pointer":false,"present_notes":true,"default_deck_tag_id":null}}};
 </script>
 
 		<script>
