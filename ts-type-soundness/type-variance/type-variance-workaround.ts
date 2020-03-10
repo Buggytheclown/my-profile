@@ -32,6 +32,12 @@ import { DR } from "../helpers";
   };
 
   proceedError(error);
+
+  // But!
+  return {} as
+  Readonly<{ status: number }> as
+  Readonly<{ status: number | string }> as
+  Readonly<{ status: string }>
 })();
 
 // Exact

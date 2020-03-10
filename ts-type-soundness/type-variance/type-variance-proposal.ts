@@ -16,14 +16,14 @@ import { DR } from "../helpers";
 
 (function() {
   function changeStatus<
-    /* in */ T extends {
+    /* out */ T extends {
       status: number | string;
     }
   >(arg: T) {
-    // Error
     arg.status = "NotFound";
   }
 
+  // Error
   const error: { status: number } = { status: 404 };
   changeStatus(error);
 
