@@ -16,3 +16,23 @@ if (typeof person.age === "number") {
   // refinement should be invalidated
   logAge(person.name, person.age);
 }
+
+(function() {
+  let cnt = 0;
+
+  const x = {
+    get a(): number | null {
+      if (cnt) {
+        return null;
+      }
+      cnt++;
+
+      return 42;
+    }
+  };
+
+  if (x.a) {
+    // Error: toString is not a function
+    x.a.toString();
+  }
+})();
