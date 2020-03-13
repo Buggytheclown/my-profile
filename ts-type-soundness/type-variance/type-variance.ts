@@ -92,3 +92,29 @@ interface Square extends Shape {
   }
   logWidth(squares);
 })();
+
+(function() {
+  class SimpleLogger {
+    log({ firstName }: { firstName: string }): void {
+      console.log(`${firstName.toUpperCase()}`);
+    }
+  }
+
+  class AdvancedLogger {
+    log({
+      firstName,
+      lastName
+    }: {
+      firstName: string;
+      lastName: string;
+    }): void {
+      console.log(`${firstName.toUpperCase()} & ${lastName.toUpperCase()}`);
+    }
+  }
+
+  function logSimple(logger: SimpleLogger) {
+    logger.log({ firstName: "John" });
+  }
+
+  logSimple(new AdvancedLogger());
+})();
