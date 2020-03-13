@@ -4,6 +4,10 @@ Presentation - https://slides.com/buggy/deck-26cbbd
 
 Slides - ./slides-deck-*.html
 
+Video - https://www.youtube.com/watch?v=5j2GrY5HBoI
+
+Article - https://habr.com/ru/post/492106/
+
 <a href="./homework/homework-solution.js">'homework' solution</a>
 
 ### <a href="./type-variance">Type variance, exact types</a>
