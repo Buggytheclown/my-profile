@@ -61,6 +61,9 @@ Suggestions:
 - Type Guard
 - Overloading
 
+### Unprocessed
+- Interface + Class of same name (https://github.com/microsoft/TypeScript/issues/9699)
+
 
 ### THEORY (extra)
 #### Video
