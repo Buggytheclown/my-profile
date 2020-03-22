@@ -45,3 +45,26 @@ const vasya: Vasya = {
 
 doSomethings(superUser);
 doSomethings(vasya);
+
+
+// Missed or undefined - https://github.com/Microsoft/TypeScript/issues/13195
+type Props = {
+    foo: string;
+}
+
+const props: Props = { foo: 'f' }
+const input: Partial<Props> = { foo: undefined }
+
+const result:Props = { ...props, ...input }
+// Cannot read property 'toString' of undefined
+result.foo.toString();
+
+
+// Void means "a value exists but you should not use it" or something to that effect.
+function foo2( n: number | void) { 
+    // n.toFixed is not a function
+    return n ? n.toFixed() : 0; 
+}
+
+const f: () => void = () => "i am a string";
+foo2(f());
